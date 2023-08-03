@@ -5,7 +5,7 @@ Main aim is to analyze the data of 1mg Homeopathic and extract valuable insights
 These insights can be used to make informed decisions for opening a new homeopathic medicine store.
 
 
-
+# Import All Necessary Libraries of Python
 import pandas as pd
 import bs4
 import requests
@@ -37,8 +37,12 @@ for page_number in range(1,21):
 
 df = pd.DataFrame(final_data, columns=['Medicine_name', 'size_of_the_bottle', 'MRP_of_the_bottle', 'Price_of_the_bottle', '1mg_url'])
 df
+# Check Null Values
 df.isnull().sum()
+
+# Check the Data Types
 df.dtypes
+
 for i in df.columns:
     print(i,df[i].sort_values().unique(),'\n',sep= '\n')
 df['MRP_of_the_bottle']=df['MRP_of_the_bottle'].str.replace('₹','')
@@ -48,6 +52,7 @@ df['Price_of_the_bottle']=df['Price_of_the_bottle'].str.replace('MRP','')
 df['Price_of_the_bottle']=df['Price_of_the_bottle'].astype('int64')
 df.dtypes
 pd.DataFrame(df).to_csv("1Mg table1.csv",index = False)
+
 # code for table-2
 url_2="https://www.1mg.com"
 r=requests.get("https://www.1mg.com/categories/homeopathy-57?filter=true&pageNumber=2",headers=headers)
