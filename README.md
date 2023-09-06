@@ -46,7 +46,8 @@ Price Range Varies from Rs.350.67 to Rs.99. Most Expensive Medicine cures Heart 
 
 -----------------------------------------------------------------------------------------------------------------------------------
 Brand specialization for each area (Key Benefits)
-![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/b3f43ea5-e833-40b0-a6b5-68dfea0c4be8)
+![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/afcf4c52-0fd8-4def-bb97-48dd2b8a6d89)
+
 Dr. Bjain Pharmaceuticals Pvt Ltd, SBL Pvt Ltd and Dr Rechewg & Co. are the Brands which deals with the most 7 Benefit Areas.
 
 -----------------------------------------------------------------------------------------------------------------------------------
