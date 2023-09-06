@@ -1,5 +1,6 @@
 # 1Mg-Homeopathic-Data-Analysis
-![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/19e25fab-17da-4ac4-bf2c-c57be8b11142)
+![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/46aaa2b3-9e93-4d7d-9ab1-6c21a9b1e6f7)
+
 
 # Technology & Tools  used
 ![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/1d4cac22-bcd3-4990-b918-d739138c9396)
