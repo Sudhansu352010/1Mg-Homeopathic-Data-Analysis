@@ -1,8 +1,12 @@
 # 1Mg-Homeopathic-Data-Analysis
-# PROBLEM-STATEMENT
-Main aim is to analyze the data of 1mg Homeopathic and extract valuable insights that can help us understand the product offerings, pricing, brand specialization, user ratings, and ingredients used in homeopathic medicines. 
+![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/19e25fab-17da-4ac4-bf2c-c57be8b11142)
 
-These insights can be used to make informed decisions for opening a new homeopathic medicine store.
+# Technology & Tools  used
+![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/1d4cac22-bcd3-4990-b918-d739138c9396)
+
+
+# PROBLEM-STATEMENT
+Main aim is to analyze the data of 1mg Homeopathic and extract valuable insights that can help us understand the product offerings, pricing, brand specialization, user ratings, and ingredients used in homeopathic medicines. These insights can be used to make informed decisions for opening a new homeopathic medicine store.
 
 
 # Import All Necessary Libraries of Python
