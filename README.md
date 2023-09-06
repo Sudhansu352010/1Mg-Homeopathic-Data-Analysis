@@ -24,113 +24,57 @@ https://www.1mg.com/categories/homeopathy-57
 # Data Dictionary
 ![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/6d300e45-3c74-48e4-9ff9-62b925c92163)
 
-# Import All Necessary Libraries of Python
-import pandas as pd
-import bs4
-import requests
-from bs4 import BeautifulSoup
-headers={
-    'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36 OPR/95.0.0.0'
+# Data Preparation
 
-}
-final_data=[]
-for page_number in range(1,21):
-    url = f'https://www.1mg.com/categories/homeopathy-57?filter=true&pageNumber=+str(i)'
-    response = requests.get(url, headers=headers)
-    soup = BeautifulSoup(response.text, 'lxml')
-    
-    medicine_names = [medicines.text for medicines in soup.find_all('div', class_='style__pro-title___2QwJy')]
-    bottle_size = [sizes.text for sizes in soup.find_all('div', class_='style__pack-size___2JQG7')]
-    mrp = [m.text for m in soup.find_all('span', class_='style__discount-price___25Bya')]
-    prices = [p.text for p in soup.find_all('div', class_='style__price-tag___cOxYc')]
-    urls = [ur.find('a')['href'] for ur in soup.find_all('div', class_='style__product-box___liepi')]
-    
-    for i in range(len(medicine_names)):
-        name = medicine_names[i]
-        size = bottle_size[i]
-        discount_price = mrp[i]
-        price = prices[i]
-        url = urls[i]
-        
-        final_data.append([name, size, discount_price, price, url])
+# Data Scrapping(Snapshots)
+![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/5e0acbf8-2cc3-4a7b-8745-fdda0b990bed)
 
-df = pd.DataFrame(final_data, columns=['Medicine_name', 'size_of_the_bottle', 'MRP_of_the_bottle', 'Price_of_the_bottle', '1mg_url'])
-df
-# Check Null Values
-df.isnull().sum()
 
-# Check the Data Types
-df.dtypes
+# Data Cleaning ( few code snippets )
+![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/b3296b1f-0317-431d-8d3a-8247238ecd11)
 
-for i in df.columns:
-    print(i,df[i].sort_values().unique(),'\n',sep= '\n')
-df['MRP_of_the_bottle']=df['MRP_of_the_bottle'].str.replace('₹','')
-df['MRP_of_the_bottle']=df['MRP_of_the_bottle'].astype('int64')
-df['Price_of_the_bottle']=df['Price_of_the_bottle'].str.replace('₹','')
-df['Price_of_the_bottle']=df['Price_of_the_bottle'].str.replace('MRP','')
-df['Price_of_the_bottle']=df['Price_of_the_bottle'].astype('int64')
-df.dtypes
-pd.DataFrame(df).to_csv("1Mg table1.csv",index = False)
+# Aggregation on Different KPI’s
+Number of medicine available for different benefit areas
+![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/b397fd6a-a8fa-461a-8fb6-9e6ae0a604d9)
+Price Range Varies from Rs.350.67 to Rs.99. Most Expensive Medicine cures Heart Diseases while least Expensive Medicine is for Ears.
 
-# code for table-2
-url_2="https://www.1mg.com"
-r=requests.get("https://www.1mg.com/categories/homeopathy-57?filter=true&pageNumber=2",headers=headers)
-soup= BeautifulSoup(r.content,"lxml")
-soup.prettify()
-diff_link_product=[]
-for i in range (1,21):
-    r=requests.get(f"https://www.1mg.com/categories/homeopathy-57?filter=true&pageNumber={i}",headers=headers)
-    soup= BeautifulSoup(r.content,"lxml")
-    productlist= soup.find_all("div",{"class":"col-md-3 col-sm-4 col-xs-6 style__container___1TL2R"})
-    for product in productlist:
-        
-        for link in product.find_all("a",href=True):
-            
-            diff_link_product.append(url_2 + link["href"])
-len(diff_link_product)
-productlist=[]
-for link in diff_link_product:
-    r=requests.get(link,headers=headers)
-    soup=BeautifulSoup(r.content,"lxml")
-    try:
-        product_name=soup.find("h1",class_="ProductTitle__product-title___3QMYH").text.strip()
-    except:
-        product_name:"Nan"
-    try:    
-        Brand_name=soup.find("div",class_="ProductTitle__manufacturer___sTfon").text.strip()
-    except:
-        Brand_name:"Nan"
-        
-    try:
-         Rating=soup.find("div",class_="RatingDisplay__ratings-container___3oUuo").text.strip()
-    except:
-        Rating:"Nan"
-    try:
-         No_Rating=soup.find("span",class_="RatingDisplay__ratings-header___ZNj5b").text.strip()
-    except:
-         No_Rating:"Nan"
-    try:
-        product_details = soup.find_all('div', {'class': 'ProductDescription__description-content___A_qCZ'})
+----------------------------------------------------------------------------------------------------------------------------------
+Average Price range of medicine for each benefit area
+![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/08197868-7438-42e6-a0e3-89e63c64ad35)
 
-        key_benefits = product_details[0].find_all('li')
-        key_benefits_list = [benefit.text.strip() for benefit in key_benefits]
-    except:
-        key_benefits_list:"Nan"
-        
-#     ['key_benefits_list'][0][:1]
+Price Range Varies from Rs.350.67 to Rs.99. Most Expensive Medicine cures Heart Diseases while least Expensive Medicine is for Ears.
 
-           
-    product={
-        
-        "Product_name":product_name,
-        "Brand":Brand_name,
-        "Rating":Rating,
-        "No_Rating":No_Rating,
-        "key_benefits_list":key_benefits_list
-         }
-    productlist.append(product)
-len(productlist)
-df1=pd.DataFrame(productlist)
-df1
-pd.DataFrame(df1).to_csv("1Mg table2.csv",index = False)
-df1['Product_name'].nunique()
+-----------------------------------------------------------------------------------------------------------------------------------
+Brand specialization for each area (Key Benefits)
+![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/b3f43ea5-e833-40b0-a6b5-68dfea0c4be8)
+Dr. Bjain Pharmaceuticals Pvt Ltd, SBL Pvt Ltd and Dr Rechewg & Co. are the Brands which deals with the most 7 Benefit Areas.
+
+-----------------------------------------------------------------------------------------------------------------------------------
+Average price, min price , max price and Number of products for each brand
+![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/d733ea72-d59b-4951-ab12-ec1a2c88de68)
+
+-----------------------------------------------------------------------------------------------------------------------------------
+Brands having most greater than 4 point review medicines
+![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/a7f88d56-202b-40f9-93f0-eed99f341e86)
+Adel Pekana Germany, Bhargava Phytolab, Fourrts India Laboratories P Ltd are the top rated Brand with 4.6 Stars out of 5 star .
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+# Dashboard
+![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/a0c3b4f2-6fbf-4d64-afc9-e0cd8a0db4bf)
+
+# INSIGHTS
+1. We are having a total of 1060 listed Homeopathic Products in our 1Mg Website, having an Average Price of Rs. 201.
+2. The Price Range varies widely with a MIN Price of Rs.47 And MAX Price of Rs. 557.
+3. Top Three brands in the homeopathic medicine space based on ratings are SBL, Dr. Reckeweg, and Schwabe.
+4. Dr.Reckeweg is the brand with the most-high rated products ,with more than 40 products rated above 4 star.
+5. The most expensive brand of homeopathic medicines is Dr. Reckeweg, while the cheapest brand is Baksons.
+6. Nuphar letumen 2x is the most expensive ingredient and if there is a substitute of this then we can use that to reduce the cost of the medicine.
+7. Most common benefit areas for homeopathic medicines are joint pain, hair care, skin care, and eye care. 
+8. The most commonly used ingredient in homeopathic medicines is Arnica Montana, which is found in many Joint pain medicines.
+
+# Future Scope 
+1. Success of antibiotics in conquering bacterial infections, viral infections may become more prevalent in the future. Homeopathy has shown promise in treating viral infections and may be a valuable option in the years to come as we already seen during covid19.
+2. Homeopathy has helped secondary infertility in high numbers.
+3. Incorporating technology and expanding into new markets may also be important for staying competitive and reaching new customers. 
+4. 1mg Homeopathic could explore expanding into new geographic markets or increasing their reach within existing markets. This could involve partnerships with local providers, marketing campaigns targeted towards specific demographics, or offering new services to attract new customers.
