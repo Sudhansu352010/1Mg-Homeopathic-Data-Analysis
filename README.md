@@ -3,8 +3,12 @@
 
 
 
+
+
 # Technology & Tools  used
 ![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/1d4cac22-bcd3-4990-b918-d739138c9396)
+
+
 
 
 # PROBLEM-STATEMENT
