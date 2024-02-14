@@ -9,6 +9,8 @@
 ![image](https://github.com/Sudhansu352010/1Mg-Homeopathic-Data-Analysis/assets/131376814/1d4cac22-bcd3-4990-b918-d739138c9396)
 
 
+# Description of the project:
+The "1Mg-Homeopathic-Data-Analysis" involves analyzing data from 1mg's homeopathic products to extract insights crucial for strategic decision-making in opening a new homeopathic medicine store. Through web scraping, data cleaning, and visualization techniques, the project identifies key factors such as product variety, pricing trends, brand performance, and prevalent ingredients, providing valuable guidance for business planning and market positioning.
 
 
 # PROBLEM-STATEMENT
